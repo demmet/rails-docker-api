@@ -1,0 +1,16 @@
+app:
+  container_name: api_docker_app
+  build: .
+  command: bash -c "while [ true ]; do sleep 10; done"
+  volumes:
+    - .:/app
+  ports:
+    - "8001:8001"
+  expose:
+    - 8001
+  links:
+    - db
+db:
+  image: postgres:10.5
+  ports:
+    - 5432
